@@ -98,28 +98,11 @@
           "type": "price",
           "settings": {}
         },
-        "variant_picker_HfqaDj": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector_UkCNJa": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
         "buy_buttons_YYNUj4": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "share_7hbQtB": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
           }
         }
       },
@@ -127,14 +110,11 @@
         "text_4iAgGr",
         "title_TQaVdy",
         "price_a3fwhr",
-        "variant_picker_HfqaDj",
-        "quantity_selector_UkCNJa",
-        "buy_buttons_YYNUj4",
-        "share_7hbQtB"
+        "buy_buttons_YYNUj4"
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "product": "",
+        "product": "the-collection-snowboard-oxygen",
         "color_scheme": "",
         "secondary_background": false,
         "media_size": "medium",
