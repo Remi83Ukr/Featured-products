@@ -1,0 +1,232 @@
+@use "../variables.scss" as *;
+@use './global-mixins.scss' as *;
+
+@mixin h1 {
+    font-family: $font_anton;
+    font-size: 52px;
+    font-weight: 400;
+
+    @include breakPoints($mobileS, min) {
+        font-size: 62px;
+    }
+
+    @include breakPoints($tabletMd, min) {
+        font-size: 100px;
+    }
+
+    @include breakPoints($desktop, min) {
+        font-size: 150px;
+    }
+
+    @include breakPoints($desktopXXL, min) {
+        font-size: 195px;
+    }
+}
+
+@mixin h2 {
+    font-family: $font_anton;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.18;
+    text-transform: uppercase;
+
+    @include breakPoints($tabletMd, min) {
+        font-size: 72px;
+        line-height: 1.08;
+    }
+}
+
+@mixin h3 {
+    font-family: $font_anton;
+    font-size: 24px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+}
+
+@mixin h4 {
+    font-family: $font_anton;
+    font-size: 28px;
+    font-weight: 400;
+    text-transform: uppercase;
+
+    @include breakPoints($tabletMd, min) {
+        font-size: 38px;
+    }
+}
+
+@mixin h5 {        
+    @include breakPoints($tablet, min) {
+        font-size: 40px;
+    }   
+
+    @include breakPoints($tablet) {
+        font-size: 25px;
+    }
+}
+
+@mixin border_right ($color) {
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 4px;
+        background-color: $color;
+
+        @include breakPoints($desktop, min) {
+            height: 5px;
+        }
+    }
+
+    &:before {
+        top: -5px;
+        right: -1px;
+
+        @include breakPoints($desktop, min) {
+            top: -6px;
+        }
+    }
+
+    &:after {
+        bottom: -5px;
+        right: -1px;
+
+        @include breakPoints($desktop, min) {
+            bottom: -6px;
+        }
+    }
+}
+
+@mixin border_left ($color) {
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 4px;
+        background-color: $color;
+
+        @include breakPoints($desktop, min) {
+            height: 5px;
+        }
+    }
+
+    &:before {
+        top: -5px;
+        left: -1px;
+
+        @include breakPoints($desktop, min) {
+            top: -6px;
+        }
+    }
+
+    &:after {
+        bottom: -5px;
+        left: -1px;
+
+        @include breakPoints($desktop, min) {
+            bottom: -6px;
+        }
+    }
+}
+
+@mixin border_top ($color) {
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 6px;
+        background-color: $color;
+
+        @include breakPoints($desktop, min) {
+            height: 7px;
+        }
+    }
+
+    &:before {
+        top: -5px;
+        left: -1px;
+
+        @include breakPoints($desktop, min) {
+            top: -6px;
+        }
+    }
+
+    &:after {
+        top: -6px;
+        right: -1px;
+
+        @include breakPoints($desktop, min) {
+            top: -7px;
+        }
+    }
+}
+
+@mixin border_bottom ($color) {
+    &:before, &:after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 1px;
+        background-color: $font-color;
+
+        @include breakPoints($desktop, min) {
+            width: 7px;
+        }
+    }
+
+    &:before {
+        left: -5px;
+        bottom: -1px;
+
+        @include breakPoints($desktop, min) {
+            left: -6px;
+        }
+    }
+
+    &:after {
+        right: -5px;
+        bottom: -1px;
+
+        @include breakPoints($desktop, min) {
+            right: -6px;
+        }
+    }
+}
+
+@mixin border_top_bottom ($color) {
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 6px;
+        background-color: $color;
+
+        @include breakPoints($desktop, min) {
+            height: 7px;
+        }
+    }
+
+    &:before {
+        top: -5px;
+        right: -1px;
+        left: auto;
+
+        @include breakPoints($desktop, min) {
+            top: -6px;
+        }
+    }
+
+    &:after {
+        bottom: -6px;
+        right: -1px;
+
+        @include breakPoints($desktop, min) {
+            bottom: -7px;
+        }
+    }
+}
+

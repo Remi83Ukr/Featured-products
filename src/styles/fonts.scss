@@ -1,0 +1,11 @@
+@use './mixins/global-mixins.scss' as *;
+
+//=====================================================================================================================
+
+@include font_face('Anton-Regular', 'Anton', 400);
+@include font_face('Britney-Regular', 'Britney', 400);
+@include font_face('Montserrat-Bold', 'Montserrat', 700);
+@include font_face('Montserrat-Medium', 'Montserrat', 500);
+@include font_face('Montserrat-MediumItalic', 'Montserrat', 500, italic);
+@include font_face('Montserrat-Regular', 'Montserrat', 400);
+
