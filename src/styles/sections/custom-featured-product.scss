@@ -1,0 +1,10 @@
+@use '../variables.scss' as *;
+@use '../mixins/global-mixins.scss' as *;
+@use '../snippets/bundle-popup.scss' as *;
+@use '../snippets/related-products.scss' as *;
+
+.product-form {
+    &.dn {
+        display: none;
+    }
+}

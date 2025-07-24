@@ -1,0 +1,9 @@
+@use '../variables.scss' as *;
+@use '../mixins/global-mixins.scss' as *;
+
+.related-products {
+    &__item {
+        display: flex;
+        gap: 10px;
+    }
+}

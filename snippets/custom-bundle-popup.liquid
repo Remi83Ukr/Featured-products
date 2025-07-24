@@ -1,0 +1,111 @@
+<aside class="bundle-popup active" id="bundle-popup">
+    <div class="bundle-popup__wrapper">
+        <div class="bundle-popup__close" data-modal-close>{{ 'icon-close.svg' | inline_asset_content }}</div>
+        <div class="bundle-popup__container">
+            <div class="bundle-popup__media">
+                {% for media in product.media limit: 1 %}
+                    {% case media.media_type %}
+                        {% when media.media_type == 'image' %}
+                            <div class="bundle-popup__image">
+                                <img
+                                    src="{{ media.src | image_url: width: 410  }}"
+                                    alt="{{ product.title }} image {{ forloop.index }}"
+                                    loading="lazy"
+                                >
+                            </div>
+                    {% endcase %}
+                {% endfor %}
+            </div>
+            <div class="bundle-popup__content">
+                {% assign product_price = product.price | money %}
+                <h3 class="bundle-popup__title">{{ block.settings.title }}</h3>
+                <p class="bundle-popup__info-title">{{ 'general.custom.bundle_product_title_html' | t: title: product.title }}</p>
+                <p class="bundle-popup__info-price">{{ 'general.custom.bundle_product_price_html' | t: price: product_price }}</p>
+                <div class="bundle-popup__products">
+                    {% for product in block.settings.product_list %}
+                        <div class="related-products__item">
+                            {% render 'custom-product-card', product: product %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="bundle-popup__buttons">
+                    <button type="button">{{ block.settings.bundle_button_label }}</button>
+                    <product-form
+                            class="product-form"
+                            data-hide-errors="{{ gift_card_recipient_feature_active }}"
+                            data-section-id="{{ section.id }}"
+                    >
+                        <div class="product-form__error-message-wrapper" role="alert" hidden>
+                        <span class="svg-wrapper">
+                          {{- 'icon-error.svg' | inline_asset_content -}}
+                        </span>
+                            <span class="product-form__error-message"></span>
+                        </div>
+                        {%- form 'product',
+                                product,
+                                id: product_form_id,
+                                class: 'form',
+                                novalidate: 'novalidate',
+                                data-type: 'add-to-cart-form'
+                        -%}
+                            <input
+                                type="hidden"
+                                name="id"
+                                value="{{ product.selected_or_first_available_variant.id }}"
+                                {% if product.selected_or_first_available_variant.available == false
+                                or quantity_rule_soldout
+                                or product.selected_or_first_available_variant == null
+                                %}
+                                    disabled
+                                {% endif %}
+                                class="product-variant-id"
+                            >
+
+                            {%- if gift_card_recipient_feature_active -%}
+                                {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+                            {%- endif -%}
+
+                            <div class="product-form__buttons">
+                                {%- liquid
+                                    assign check_against_inventory = true
+                                    if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
+                                        assign check_against_inventory = false
+                                    endif
+                                    if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+                                        assign quantity_rule_soldout = true
+                                    endif
+                                -%}
+                                <button
+                                    id="ProductSubmitButton-{{ section_id }}"
+                                    type="submit"
+                                    name="add"
+                                    class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+                                    {% if product.selected_or_first_available_variant.available == false
+                                    or quantity_rule_soldout
+                                    or product.selected_or_first_available_variant == null
+                                    %}
+                                        disabled
+                                    {% endif %}
+                                >
+                                    <span>
+                                      {%- if product.selected_or_first_available_variant == null -%}
+                                          {{ 'products.product.unavailable' | t }}
+                                      {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                                          {{ 'products.product.sold_out' | t }}
+                                      {%- else -%}
+                                          {{ 'products.product.custom_add_to_cart' | t }}
+                                      {%- endif -%}
+                                    </span>
+                                    {%- render 'loading-spinner' -%}
+                                </button>
+                                {%- if show_dynamic_checkout -%}
+                                    {{ form | payment_button }}
+                                {%- endif -%}
+                            </div>
+                        {%- endform -%}
+                    </product-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>

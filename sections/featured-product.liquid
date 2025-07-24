@@ -40,11 +40,11 @@
       }
     }
   {%- endstyle -%}
-
+<script>console.log({{ product | json }})</script>
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
-
+  {{ 'custom-featured-product.css' | asset_url | stylesheet_tag }}
   {% comment %} TODO: assign `product.selected_or_first_available_variant` to variable and replace usage to reduce verbosity {% endcomment %}
 
   {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
@@ -70,7 +70,7 @@
 
   <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
     <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
-      <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      <div class="featured-product test-featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {%- unless placeholder -%}
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
@@ -451,6 +451,11 @@
         </div>
       </div>
       {% render 'product-media-modal', product: product, variant_images: variant_images %}
+      {% for block in section.blocks %}
+        {% if block.type == 'bundle-popup' %}
+            {% render 'custom-bundle-popup', block: block, product: product %}
+        {% endif %}
+    {% endfor %}
     </div>
   </section>
 
@@ -486,6 +491,8 @@
     <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
   {% endif %}
 </product-info>
+
+<script src="{{ 'custom-featured-product.js' | asset_url }}" type="module" defer></script>
 
 {% schema %}
 {
@@ -665,6 +672,12 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        },
+        {
+          "type": "text",
+          "id": "bundle_button_label",
+          "default": "Show bundle popup",
+          "label": "Bundle popup button label",
         }
       ]
     },
@@ -1326,6 +1339,31 @@
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
         }
       ]
+    },
+    {
+      "type": "bundle-popup",
+      "name": "Bundle popup",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "default": "COMPLETE YOUR PURCHASE",
+          "label": "Bundle popup title"
+        },
+        {
+          "type": "text",
+          "id": "bundle_button_label",
+          "default": "Add to cart",
+          "label": "Bundle button label"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "Products",
+          "limit": 4
+        }
+      ]
     }
   ],
   "settings": [
@@ -1345,6 +1383,12 @@
       "id": "secondary_background",
       "default": false,
       "label": "t:sections.featured-product.settings.secondary_background.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "bundle_modal",
+      "default": true,
+      "label": "Show bundle popup"
     },
     {
       "type": "header",

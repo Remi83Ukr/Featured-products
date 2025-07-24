@@ -1,5 +1,9 @@
 {
   "general": {
+    "custom": {
+      "bundle_product_title_html": "You are trying to add <span>{{ title }}</span> to the cart.",
+      "bundle_product_price_html": "Complete your look and save <span>{{ price }}</span>"
+    },
     "password_page": {
       "login_form_heading": "Enter store using password:",
       "login_password_button": "Enter using password",
@@ -107,6 +111,7 @@
   "products": {
     "product": {
       "add_to_cart": "Add to cart",
+      "custom_add_to_cart": "Continue to the Cart",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",

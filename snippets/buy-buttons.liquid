@@ -24,8 +24,17 @@
       endif
     -%}
 
+    {% if section.settings.bundle_modal == true %}
+      <button type="button"
+              id="bundle-popup-button"
+              class="bundle-popup__button product-form__submit button button--full-width button--primary"
+      >
+        {{ block.settings.bundle_button_label }}
+      </button>
+    {% endif %}
+
     <product-form
-      class="product-form"
+      class="product-form{% if section.settings.bundle_modal == true %} dn{% endif %}"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
     >

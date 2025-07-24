@@ -3,18 +3,8 @@
 @use './variables.scss' as *;
 @use './normalize.scss' as *;
 @use './fonts.scss' as *;
-@use './ui/buttons.scss' as *;
-@use './ui/typography.scss' as *;
-@use './ui/form-input.scss' as *;
 @use './mixins/global-mixins.scss' as *;
-@use './snippets/decorated-border.scss' as *;
-@use './snippets/main-button.scss' as *;
-@use './snippets/photo_frame.scss' as *;
-@use './snippets/header-block.scss' as *;
-@use './snippets/decorated-button.scss' as *;
 
-// Modules
-@use '../../node_modules/swiper/swiper-bundle.css';
 /* ====================================================== ROOT ===================================================== */
 
 :root {
@@ -91,6 +81,28 @@ footer {
     display: none;
 }
 
-.zigzag-mask {
+.bg-block {
+    position: fixed;
     display: none;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
 }
+
+.bg-block {
+    z-index: 7;
+}
+
+.bg-block.db {
+    display: block;
+}
+
+.bg-block.active {
+    opacity: 1;
+    pointer-events: all;
+}
+

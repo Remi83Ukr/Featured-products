@@ -3,7 +3,9 @@ import { readdirSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import sass from 'sass';    
+import * as sass from 'sass';
+
+//=====================================================================================================================
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +18,8 @@ readdirSync('./src/scripts/sections', { withFileTypes: true }).forEach(file => {
         entriesObject[name] = _resolve(__dirname, `src/scripts/sections/${file.name}`);
     }
 });
+
+//=====================================================================================================================
 
 export default {
     resolve: {
@@ -91,5 +95,11 @@ export default {
                 ]
             }
         ]
-    }
+    },
+    ignoreWarnings: [
+        {
+            module: /sass\.dart\.js/,
+            message: /Critical dependency: require function is used in a way in which dependencies cannot be statically extracted/
+        }
+    ]
 }
