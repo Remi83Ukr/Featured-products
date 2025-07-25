@@ -459,7 +459,7 @@
     </div>
   </section>
 
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script type="module" src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
   {%- if section.settings.image_zoom == 'hover' -%}
     <script id="EnableZoomOnHover-featured" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
   {%- endif %}

@@ -1,8 +1,8 @@
-<div class="related-product__media">
+<div class="related-products__media">
     {% for media in product.media limit: 1 %}
         {% case media.media_type %}
             {% when media.media_type == 'image' %}
-                <div class="bundle-popup__image">
+                <div class="related-products__image">
                     <img
                     src="{{ media.src | image_url: width: 100  }}"
                     alt="{{ product.title }} image {{ forloop.index }}"
@@ -12,8 +12,8 @@
         {% endcase %}
     {% endfor %}
 </div>
-<div class="related-product__info">
+<div class="related-products__info">
     <h4 class="title">{{ product.title }}</h4>
-    <p class="sku">{{ product.sku }}</p>
+    <p class="sku">SKU: {{ product.selected_or_first_available_variant.sku }}</p>
     {% render 'price', product: product %}
 </div>

@@ -1,3 +1,5 @@
+import { popupOpenAndCloseLogic } from './popupOpenAndCloseLogic.js';
+
 if (!customElements.get('product-form')) {
   customElements.define(
     'product-form',
@@ -19,6 +21,11 @@ if (!customElements.get('product-form')) {
 
       onSubmitHandler(evt) {
         evt.preventDefault();
+          const bundlePopup = document.getElementById('bundle-popup'),
+              backDrop = document.getElementById('bg-block');
+
+        if (bundlePopup) popupOpenAndCloseLogic(bundlePopup, backDrop);
+
         if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
         this.handleErrorMessage();

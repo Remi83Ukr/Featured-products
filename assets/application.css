@@ -108,23 +108,9 @@ body {
   min-height: 100vh;
   font-family: "Montserrat", sans-serif;
 }
-body::-webkit-scrollbar {
-  width: 15px;
-  background-color: #ABB8BC;
-}
-body::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  border: 3px solid #ABB8BC;
-  border-left: 2px solid #ABB8BC;
-  background-color: #FBF7ED;
-}
-body::-webkit-scrollbar-track {
-  border-left: 1px solid #ABB8BC;
-  background-color: #ABB8BC;
-}
-body.scroll-hidden {
-  overflow: hidden;
+body.is-scroll-hidden {
   padding-right: 15px;
+  overflow: hidden;
 }
 
 .preloader {

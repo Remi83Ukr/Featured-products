@@ -1,4 +1,4 @@
-<aside class="bundle-popup active" id="bundle-popup">
+<aside class="bundle-popup active" id="bundle-popup" data-variant-id="{{ product.variants.first.id }}">
     <div class="bundle-popup__wrapper">
         <div class="bundle-popup__close" data-modal-close>{{ 'icon-close.svg' | inline_asset_content }}</div>
         <div class="bundle-popup__container">
@@ -23,13 +23,14 @@
                 <p class="bundle-popup__info-price">{{ 'general.custom.bundle_product_price_html' | t: price: product_price }}</p>
                 <div class="bundle-popup__products">
                     {% for product in block.settings.product_list %}
-                        <div class="related-products__item">
+                        {% assign first_variant = product.variants.first %}
+                        <div class="related-products__item" data-related-products data-variant-id="{{ first_variant.id }}">
                             {% render 'custom-product-card', product: product %}
                         </div>
                     {% endfor %}
                 </div>
                 <div class="bundle-popup__buttons">
-                    <button type="button">{{ block.settings.bundle_button_label }}</button>
+                    <button type="button" id="bundle-button" class="bundle-button button button--full-width button--secondary">{{ block.settings.bundle_button_label }}</button>
                     <product-form
                             class="product-form"
                             data-hide-errors="{{ gift_card_recipient_feature_active }}"

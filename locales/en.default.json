@@ -1,8 +1,8 @@
 {
   "general": {
     "custom": {
-      "bundle_product_title_html": "You are trying to add <span>{{ title }}</span> to the cart.",
-      "bundle_product_price_html": "Complete your look and save <span>{{ price }}</span>"
+      "bundle_product_title_html": "You are trying to add <strong>{{ title }}</strong> to the cart.",
+      "bundle_product_price_html": "Complete your look and save <strong>{{ price }}</strong>"
     },
     "password_page": {
       "login_form_heading": "Enter store using password:",
