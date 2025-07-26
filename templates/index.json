@@ -102,7 +102,19 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": false,
-            "show_gift_card_recipient": false
+            "show_gift_card_recipient": false,
+            "bundle_button_label": "Show bundle popup"
+          }
+        },
+        "bundle_popup_tk6GWe": {
+          "type": "bundle-popup",
+          "settings": {
+            "title": "COMPLETE YOUR PURCHASE",
+            "bundle_button_label": "Add to cart",
+            "product_list": [
+              "nike-everyday-plus",
+              "nike-icon-air-force-1"
+            ]
           }
         }
       },
@@ -110,13 +122,15 @@
         "text_4iAgGr",
         "title_TQaVdy",
         "price_a3fwhr",
-        "buy_buttons_YYNUj4"
+        "buy_buttons_YYNUj4",
+        "bundle_popup_tk6GWe"
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "product": "the-collection-snowboard-oxygen",
+        "product": "jordan-spizike-low",
         "color_scheme": "",
         "secondary_background": false,
+        "bundle_modal": true,
         "media_size": "medium",
         "constrain_to_viewport": true,
         "media_fit": "contain",
