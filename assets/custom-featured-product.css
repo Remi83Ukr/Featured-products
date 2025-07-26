@@ -147,6 +147,7 @@
 }
 .related-products__item.active {
   box-shadow: 0 0 0 2px #05117F;
+  background-color: #FBF7ED;
 }
 .related-products__item:hover {
   box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.5);
