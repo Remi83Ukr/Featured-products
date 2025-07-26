@@ -60,11 +60,19 @@
     &__container {
         display: flex;
         gap: 20px;
+
+        @include breakPoints($tablet) {
+            flex-direction: column;
+        }
     }
 
     &__media {
         max-width: 411px;
         width: 100%;
+
+        @include breakPoints($tablet) {
+            margin: 0 auto;
+        }
     }
 
     &__image {

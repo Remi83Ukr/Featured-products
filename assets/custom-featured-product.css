@@ -63,9 +63,19 @@
   display: flex;
   gap: 20px;
 }
+@media screen and (max-width: 767px) {
+  .bundle-popup__container {
+    flex-direction: column;
+  }
+}
 .bundle-popup__media {
   max-width: 411px;
   width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .bundle-popup__media {
+    margin: 0 auto;
+  }
 }
 .bundle-popup__image {
   position: relative;
