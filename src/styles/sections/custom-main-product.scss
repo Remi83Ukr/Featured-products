@@ -1,0 +1,8 @@
+@use '../variables.scss' as *;
+@use '../mixins/global-mixins.scss' as *;
+@use '../snippets/swiper-product-gallery.scss' as *;
+
+.product__container {
+    position: relative;
+}
+

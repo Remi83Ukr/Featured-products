@@ -1,0 +1,33 @@
+<div class="product__container">
+    <div class="swiper product__swiper"
+     id="product-slider"
+     data-navigation={{ section.settings.swiper_navigation }}
+     data-pagination={{ section.settings.swiper_pagination }}
+     data-slider-space="{{ section.settings.swiper_space }}"
+     data-qty="{{ section.settings.slider_qty }}"
+     >
+         <div class="swiper-button-prev swiper-buttons{% if section.settings.swiper_navigation == false %} hide{% endif %}" id="product-button-prev"> </div>
+        <div class="swiper-wrapper product__swiper-wrapper">
+            {% for media in product.media %}
+                {% case media.media_type %}
+                    {% when media.media_type == 'image' %}
+                        <div class="swiper-slide product__swiper-slide">
+                            <img
+                                    src="{{ media.src | image_url }}"
+                                    alt="{{ product.title }} image {{ forloop.index }}"
+                                    width="auto"
+                                    height="auto"
+                                    loading="lazy"
+                                    class="product__swiper-image"
+                                    data-slide-item="{{ forloop.index }}"
+                            >
+                        </div>
+                {% endcase %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="product__swiper-navigations">
+        <div class="swiper-pagination" id="product-swiper-pagination"></div>
+    </div>
+    <div class="swiper-button-next swiper-buttons{% if section.settings.swiper_navigation == false %} hide{% endif %}" id="product-button-next"> </div>
+</div>   

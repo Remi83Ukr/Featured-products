@@ -1,4 +1,4 @@
-import { popupOpenAndCloseLogic } from './popupOpenAndCloseLogic.js';
+// import { popupOpenAndCloseLogic } from './popupOpenAndCloseLogic.js';
 
 if (!customElements.get('product-form')) {
   customElements.define(

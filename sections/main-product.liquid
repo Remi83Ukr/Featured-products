@@ -71,12 +71,16 @@
       onload="this.media='all'"
     >
   {%- endif -%}
-
+  <link rel="stylesheet" href="{{ "custom-main-product.css" | asset_url }}">
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
-        {% render 'product-media-gallery', variant_images: variant_images %}
+        {% if section.settings.slider_type == 'swiper' %}
+          {% render 'swiper-media-gallery', variant_images: variant_images %}
+        {% else %}
+          {% render 'product-media-gallery', variant_images: variant_images %}
+        {% endif %}
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
@@ -723,6 +727,8 @@
     </script>
   </div>
 </product-info>
+
+<script src="{{ 'custom-main-product.js' | asset_url }}" type="module" defer></script>
 
 {% schema %}
 {
@@ -2093,6 +2099,62 @@
       "type": "header",
       "content": "t:sections.main-product.settings.header.content",
       "info": "t:sections.main-product.settings.header.info"
+    },
+    {
+        "type": "select",
+        "id": "slider_type",
+        "options": [
+          {
+            "value": "swiper",
+            "label": "Swiper slider"
+          },
+          {
+            "value": "dawn_slider",
+            "label": "Dawn theme slider"
+          }
+        ],
+        "default": "swiper",
+        "label": "Choose slider"
+    },
+    {
+      "type": "header",
+      "content": "Swiper slider details"
+    },
+    {
+      "type": "checkbox",
+      "id": "swiper_navigation",
+      "default": true,
+      "label": "Show swiper navigation buttons"
+    },
+    {
+      "type": "checkbox",
+      "id": "swiper_pagination",
+      "default": true,
+      "label": "Show swiper pagination"
+    },
+    {
+      "type": "range",
+      "id": "slider_qty",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "unit": "qty",
+      "label": "Sliders quantity",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "swiper_space",
+      "min": 0,
+      "max": 50,
+      "step": 10,
+      "unit": "px",
+      "label": "Space between sliders",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Media settings"
     },
     {
       "type": "select",

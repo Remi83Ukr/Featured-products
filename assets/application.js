@@ -16,7 +16,7 @@
   \************************************/
 /***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_application_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/application.scss */ \"./src/styles/application.scss\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  document.body.classList.add('body--loaded');\n});\n\n//# sourceURL=webpack://test-store/./src/scripts/application.js?");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_application_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/application.scss */ \"./src/styles/application.scss\");\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  document.body.classList.add('body--loaded');\n});\n\n//# sourceURL=webpack://test-store/./src/scripts/application.js?\n}");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
   \*************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://test-store/./src/styles/application.scss?");
+eval("{__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://test-store/./src/styles/application.scss?\n}");
 
 /***/ })
 
