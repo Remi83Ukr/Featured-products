@@ -9,9 +9,6 @@ const swiper = () => {
     const space = slider.dataset.sliderSpace;
     const qty = slider.dataset.qty;
 
-    console.log(ispagination);
-    
-
     const swiperGallery = new Swiper('#product-slider', {
         navigation: {
             nextEl: isnavigation === 'true' ? '#product-button-next' : '',
@@ -26,7 +23,30 @@ const swiper = () => {
         slidesPerView: qty,
         speed: 500,
         spaceBetween: space,
+        observer: true,
+        observeSlideChildren: true,
+        observeParents: true,
     })
+
+    const observer = new MutationObserver(mutations => {
+        for (const mutation of mutations) {
+            if (mutation.attributeName === 'class') {
+                const slide = mutation.target;
+                if (slide.classList.contains('activated')) {
+                    const index = Array.from(swiperGallery.slides).indexOf(slide);
+                    if (index >= 0) {
+                    swiperGallery.slideTo(index);
+                    swiperGallery.navigation.init();
+                    }
+                }
+            }
+        }
+    });
+
+    swiperGallery.slides.forEach(slide => {
+        observer.observe(slide, { attributes: true, attributeFilter: ['class'] });
+    });
 }
+
 
 swiper();

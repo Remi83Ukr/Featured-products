@@ -8,21 +8,22 @@
      >
          <div class="swiper-button-prev swiper-buttons{% if section.settings.swiper_navigation == false %} hide{% endif %}" id="product-button-prev"> </div>
         <div class="swiper-wrapper product__swiper-wrapper">
-            {% for media in product.media %}
-                {% case media.media_type %}
-                    {% when media.media_type == 'image' %}
-                        <div class="swiper-slide product__swiper-slide">
-                            <img
-                                    src="{{ media.src | image_url }}"
-                                    alt="{{ product.title }} image {{ forloop.index }}"
-                                    width="auto"
-                                    height="auto"
-                                    loading="lazy"
-                                    class="product__swiper-image"
-                                    data-slide-item="{{ forloop.index }}"
-                            >
-                        </div>
-                {% endcase %}
+            <script>console.log({{ product | json }})</script>
+            {% for variant in product.variants %}
+               
+            
+                <div class="swiper-slide product__swiper-slide" data-variant-name="{{ variant.title }}" data-swiper-slides>
+                    <img
+                            src="{{ variant.featured_image.src | image_url }}"
+                            alt="{{ product.title }} image {{ forloop.index }}"
+                            width="auto"
+                            height="auto"
+                            loading="lazy"
+                            class="product__swiper-image"
+                            data-slide-item="{{ forloop.index }}"
+                    >
+                </div>
+                
             {% endfor %}
         </div>
     </div>

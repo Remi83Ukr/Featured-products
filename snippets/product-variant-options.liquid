@@ -21,6 +21,7 @@
 -%}
 
 {%- for value in option.values -%}
+  <script>console.log({{ value.swatch.image }})</script>
   {%- liquid
     assign swatch_focal_point = null
     if value.swatch.image

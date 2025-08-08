@@ -1100,6 +1100,16 @@ class VariantSelects extends HTMLElement {
     } else if (tagName === 'INPUT' && target.type === 'radio') {
       const selectedSwatchValue = target.closest(`.product-form__input`).querySelector('[data-selected-value]');
       if (selectedSwatchValue) selectedSwatchValue.innerHTML = value;
+      const mediaslides = document.querySelectorAll('[data-swiper-slides]');
+      if (mediaslides) {
+        for (const mediaslide of mediaslides) {
+          mediaslide.classList.remove('activated');
+          if (mediaslide.dataset.variantName === value) {
+            mediaslide.classList.add('activated');
+          }
+        }
+      }
+      
     }
   }
 

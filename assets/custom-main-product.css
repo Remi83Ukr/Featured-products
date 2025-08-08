@@ -46,6 +46,14 @@
   display: none;
 }
 
+.swiper-slide.activated {
+  border: 2px solid black;
+}
+
 .product__container {
   position: relative;
+}
+
+.accordion .svg-wrapper {
+  display: none;
 }
