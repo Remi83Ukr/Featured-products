@@ -40,7 +40,7 @@
       }
     }
   {%- endstyle -%}
-<script>console.log({{ product | json }})</script>
+<script>console.log({{  product.selected_or_first_available_variant.store_availabilities | json }})</script>
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
